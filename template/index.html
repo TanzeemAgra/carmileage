@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Mileage</title>
+</head>
+<body>
+
+<h1><center>Mileage Prediction Using Machine Learning Model</center></h1>
+
+
+{% if scoreval %}
+<form method="post" enctype="multipart/form-data" action="updatedb">
+{% else %}
+<form method="post" enctype="multipart/form-data" action="predictMPG">
+{% endif %}
+
+{% csrf_token %}
+ <center>Cylinders: <input name="cylinderVal" type="text" value={{temp.cylinders}}><br><br></center>
+ <center>Displacement: <input type="text" name="dispVal" value={{temp.displacement}}><br><br></center>
+ <center>horsepower: <input type="text" name="hrsPwrVal" value={{temp.horsepower}}><br><br></center>
+<center> weight: <input type="text" name="weightVal" value={{temp.weight}}><br><br></center>
+ <center>acceleration:  <input type="text" name="accVal" value={{temp.acceleration}}><br><br></center>
+ <center>model: <input type="text" name="modelVal" value={{temp.model_year}}><br><br></center>
+<center> origin: <input type="text" name="originVal" value={{temp.origin}}><br><br></center>
+ <br>
+ 
+ {% if scoreval %}
+ <center><h1> The Mileage of the Vehicle is {{scoreval}}</h1></center>
+ <center><h2> Do you want to save in DataBase</h2></center>
+ 
+ <center><input type="hidden" name="mpgVal" value={{scoreval}}></center>
+ <center><input type="submit" value="Submit" ></center>
+ {% else %}
+ 
+ <center><input type="submit" value="Submit" ></center>
+ 
+ {% endif %}
+ 
+ </form>
+ 
+
+ 
+ 
+</body>
+</html>
